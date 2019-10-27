@@ -5,7 +5,7 @@
  * @modify date 2019-08-09 17:13:03
  * @desc [description]
  */
-import React from 'react';
+import React from '@tarojs/taro';
 import hoistStatics from 'hoist-non-react-statics'
 import {
 	StoreModule,
@@ -20,7 +20,7 @@ import {isEqualWithDepthLimit} from './utils';
 type TReactComponent<P, S> = React.FC<P> | React.ComponentClass<P, S>;
 type ModuleNames = ModuleName[];
 
-let Loading: TReactComponent<{}, {}> = () => null;
+let Loading: any = () => null;
 
 const createLoadModulesPromise = (moduleNames: ModuleNames, store: Store) => moduleNames.map((mn: ModuleName) => store.getLazyModule(mn)());
 
@@ -160,11 +160,11 @@ const connect = <P, S, SP>(
 		}
 	}
 	let FinalConnect = Connect;
-	if (!!React.forwardRef) {
-		FinalConnect = React.forwardRef<any, P>(
-			function ForwardConnect(props: P, ref) {return <Connect {...props} forwardedRef={ref} />}
-		) as any;
-	}
+	// if (!!React.forwardRef) {
+	// 	FinalConnect = React.forwardRef<any, P>(
+	// 		function ForwardConnect(props: P, ref) {return <Connect {...props} forwardedRef={ref} />}
+	// 	) as any;
+	// }
 	return hoistStatics(FinalConnect as any, WrappedComponent) as React.ComponentClass<Omit<P, keyof SP>, S>;
 }
 

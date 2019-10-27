@@ -2,7 +2,7 @@ import {
     useState,
     useCallback,
     useEffect,
-} from 'react';
+} from '@tarojs/taro';
 import {
     getStoreInstance,
     ModuleName,
