@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _taro = _interopRequireDefault(require("@tarojs/taro"));
 
 var _hoistNonReactStatics = _interopRequireDefault(require("hoist-non-react-statics"));
 
@@ -16,8 +16,6 @@ var _utils = require("./utils");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -199,7 +197,7 @@ var connect = function connect(moduleNames, WrappedComponent, LoadingComponent) 
         if (!this.integralModulesName.length) {
           console.warn("modules: ".concat(moduleNames.join(), " is not exits!"));
           console.warn("".concat(moduleNames.join(), " \u6A21\u5757\u4E0D\u5B58\u5728!"));
-          return _react["default"].createElement(WrappedComponent, newProps);
+          return _taro["default"].createElement(WrappedComponent, newProps);
         }
 
         if (this.state.modulesHasLoaded) {
@@ -213,24 +211,20 @@ var connect = function connect(moduleNames, WrappedComponent, LoadingComponent) 
 
         Object.assign(newProps, this.injectModules);
 
-        var render = _react["default"].createElement(WrappedComponent, newProps);
+        var render = _taro["default"].createElement(WrappedComponent, newProps);
 
-        return this.state.modulesHasLoaded ? render : _react["default"].createElement(this.LoadingComponent, null);
+        return this.state.modulesHasLoaded ? render : _taro["default"].createElement(this.LoadingComponent, null);
       }
     }]);
 
     return Connect;
-  }(_react["default"].Component);
+  }(_taro["default"].Component);
 
-  var FinalConnect = Connect;
-
-  if (!!_react["default"].forwardRef) {
-    FinalConnect = _react["default"].forwardRef(function ForwardConnect(props, ref) {
-      return _react["default"].createElement(Connect, _extends({}, props, {
-        forwardedRef: ref
-      }));
-    });
-  }
+  var FinalConnect = Connect; // if (!!React.forwardRef) {
+  // 	FinalConnect = React.forwardRef<any, P>(
+  // 		function ForwardConnect(props: P, ref) {return <Connect {...props} forwardedRef={ref} />}
+  // 	) as any;
+  // }
 
   return (0, _hoistNonReactStatics["default"])(FinalConnect, WrappedComponent);
 };

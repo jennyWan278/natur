@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.useInject = useInject;
 
-var _react = require("react");
+var _taro = require("@tarojs/taro");
 
 var _createStore = require("./createStore");
 
@@ -34,7 +34,7 @@ function useInject() {
     throw new Error('useInject: moduleNames param is required!');
   }
 
-  var _useState = (0, _react.useState)(moduleNames),
+  var _useState = (0, _taro.useState)(moduleNames),
       _useState2 = _slicedToArray(_useState, 2),
       $moduleNames = _useState2[0],
       setModuleNames = _useState2[1];
@@ -55,7 +55,7 @@ function useInject() {
     return [];
   }
 
-  var _useState3 = (0, _react.useState)({}),
+  var _useState3 = (0, _taro.useState)({}),
       _useState4 = _slicedToArray(_useState3, 2),
       stateChanged = _useState4[0],
       setStateChanged = _useState4[1]; // 获取moduleNames中是否存在未加载的模块
@@ -65,11 +65,11 @@ function useInject() {
     return !store.hasModule(mn);
   });
   var hasUnloadModules = !!unLoadedModules.length;
-  var $setStateChanged = (0, _react.useCallback)(function () {
+  var $setStateChanged = (0, _taro.useCallback)(function () {
     return setStateChanged({});
   }, [setStateChanged]); // 初始化store监听
 
-  (0, _react.useEffect)(function () {
+  (0, _taro.useEffect)(function () {
     var unsubscribes = $moduleNames.map(function (mn) {
       return store.subscribe(mn, $setStateChanged);
     });
@@ -79,7 +79,7 @@ function useInject() {
       });
     };
   }, [$moduleNames]);
-  (0, _react.useEffect)(function () {
+  (0, _taro.useEffect)(function () {
     // 动态加载moduleName中还未加载的模块
     if (hasUnloadModules) {
       var loadModulesPromise = createLoadModulesPromise(unLoadedModules, store);

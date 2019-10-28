@@ -5,11 +5,11 @@
  * @modify date 2019-08-09 17:13:03
  * @desc [description]
  */
-import React from 'react';
+import React from '@tarojs/taro';
 declare type TReactComponent<P, S> = React.FC<P> | React.ComponentClass<P, S>;
 declare const Inject: {
     <StoreProp>(...moduleNames: (string | number)[]): <P, C, SP extends StoreProp>(WrappedComponent: TReactComponent<P, C>, LoadingComponent?: React.FunctionComponent<{}> | React.ComponentClass<{}, {}> | undefined) => React.ComponentClass<Pick<P, Exclude<keyof P, keyof SP>> & {
-        forwardedRef?: ((instance: any) => void) | React.RefObject<any> | null | undefined;
+        forwardedRef?: string | ((instance: any) => any) | undefined;
     }, C>;
     setLoadingComponent(LoadingComponent: TReactComponent<{}, {}>): TReactComponent<{}, {}>;
 };

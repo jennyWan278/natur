@@ -4,7 +4,12 @@ import resolve from 'rollup-plugin-node-resolve'
 
 export default {
     input: "dist/index.js",
-    external: ['react', 'react-dom', 'hoist-non-react-statics'],
+    external: [
+		'react',
+		'react-dom',
+		'@tarojs/taro',
+		'hoist-non-react-statics'
+	],
     output: [
         {
             file: "dist/rns.js",
@@ -28,7 +33,7 @@ export default {
             presets: [
                 [
                     '@babel/preset-env',
-                    { 
+                    {
                         modules: false,
                         // loose: true,
                     }
