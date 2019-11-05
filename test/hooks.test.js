@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '@tarojs/taro';
 // import renderer from 'react-test-renderer';
 import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';

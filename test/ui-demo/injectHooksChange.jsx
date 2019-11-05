@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState} from "@tarojs/taro";
 import { createStore, useInject } from "../../src";
 
 const name = {
