@@ -1,6 +1,6 @@
 {
 	"name": "rns-taro",
-	"version": "2.0.1",
+	"version": "2.1.1",
 	"description": "taro state management",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -54,6 +54,8 @@
 		"gzip-size-cli": "^3.0.0",
 		"html-webpack-plugin": "3.2.0",
 		"jest": "^24.9.0",
+		"react": "^16.9.0",
+		"react-dom": "^16.9.0",
 		"rimraf": "^2.6.3",
 		"rollup": "^1.10.1",
 		"rollup-plugin-babel": "^4.3.3",
@@ -61,6 +63,7 @@
 		"rollup-plugin-license": "^0.8.1",
 		"rollup-plugin-node-resolve": "^5.2.0",
 		"rollup-plugin-terser": "^5.1.2",
+		"@tarojs/taro": "^1.3.22",
 		"terser": "^4.1.2",
 		"typescript": "3.5.3",
 		"webpack": "4.39.0",
@@ -68,10 +71,7 @@
 		"webpack-dev-server": "^3.3.1"
 	},
 	"dependencies": {
-		"@tarojs/taro": "^1.3.22",
-		"hoist-non-react-statics": "^3.3.0",
-		"react": "^16.9.0",
-		"react-dom": "^16.9.0"
+		"hoist-non-react-statics": "^3.3.0"
 	},
 	"peerDependencies": {
 		"@tarojs/taro": "^1.3.21",
