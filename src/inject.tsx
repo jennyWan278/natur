@@ -22,6 +22,7 @@ type ModuleNames = ModuleName[];
 
 let Loading: any = () => null;
 
+let _getStoreInstance = getStoreInstance;
 const createLoadModulesPromise = (moduleNames: ModuleNames, store: Store) => moduleNames.map((mn: ModuleName) => store.getLazyModule(mn)());
 
 type Tstate = {
@@ -119,7 +120,7 @@ const connect = <P, S, SP>(
 			return propsChanged || stateChanged;
 		}
 		init() {
-			const storeContext = getStoreInstance();
+			const storeContext = _getStoreInstance();
 			const store = storeContext;
 			if (store === undefined) {
 				const errMsg = '\n 请先创建store实例！\n Please create a store instance first.';
@@ -176,6 +177,9 @@ const Inject = <StoreProp,>(...moduleNames: ModuleName[]) => {
 }
 
 Inject.setLoadingComponent = (LoadingComponent: TReactComponent<{}, {}>) => Loading = LoadingComponent;
+Inject.setStoreGetter = (storeGetter: () => Store) => {
+	_getStoreInstance = storeGetter;
+}
 
 export default Inject;
 

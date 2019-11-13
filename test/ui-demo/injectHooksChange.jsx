@@ -42,6 +42,7 @@ const App = () => {
 		</>
 	);
 };
+
 const initStore = () => createStore(
 	{
 		name,
