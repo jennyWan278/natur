@@ -1,6 +1,6 @@
 {
 	"name": "rns-taro",
-	"version": "2.1.1",
+	"version": "2.1.2",
 	"description": "taro state management",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",

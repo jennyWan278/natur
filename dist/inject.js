@@ -41,6 +41,8 @@ var Loading = function Loading() {
   return null;
 };
 
+var _getStoreInstance = _createStore.getStoreInstance;
+
 var createLoadModulesPromise = function createLoadModulesPromise(moduleNames, store) {
   return moduleNames.map(function (mn) {
     return store.getLazyModule(mn)();
@@ -160,7 +162,8 @@ var connect = function connect(moduleNames, WrappedComponent, LoadingComponent) 
     }, {
       key: "init",
       value: function init() {
-        var storeContext = (0, _createStore.getStoreInstance)();
+        var storeContext = _getStoreInstance();
+
         var store = storeContext;
 
         if (store === undefined) {
@@ -243,6 +246,10 @@ var Inject = function Inject() {
 
 Inject.setLoadingComponent = function (LoadingComponent) {
   return Loading = LoadingComponent;
+};
+
+Inject.setStoreGetter = function (storeGetter) {
+  _getStoreInstance = storeGetter;
 };
 
 var _default = Inject;
